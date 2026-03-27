@@ -1,4 +1,4 @@
-# Solar inverter dashboard
+# Omnik Solar Inverter Webportal
 
 Monorepo for collecting Omnik-style inverter telemetry over HTTP and optional TCP push, storing samples in SQLite, and visualizing them in a React dashboard.
 
