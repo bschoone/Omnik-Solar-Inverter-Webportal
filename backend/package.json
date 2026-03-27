@@ -1,0 +1,41 @@
+{
+  "name": "solar-backend",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "tcp:send-test": "node scripts/send-omnik-push-sample.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "docker:build:prod": "docker build -f Dockerfile -t solar-backend:prod .",
+    "docker:build:dev": "docker build -f Dockerfile.dev -t solar-backend:dev .",
+    "docker:up": "docker compose --profile prod up --build -d",
+    "docker:up:dev": "docker compose --profile dev up --build",
+    "docker:down": "docker compose --profile prod --profile dev down",
+    "docker:logs": "docker compose logs -f solar-backend"
+  },
+  "dependencies": {
+    "@scalar/express-api-reference": "^0.8.25",
+    "better-sqlite3": "^11.7.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.5",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.4"
+  }
+}

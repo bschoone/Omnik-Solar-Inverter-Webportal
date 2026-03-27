@@ -1,0 +1,41 @@
+name: solar-backend
+
+services:
+  solar-backend:
+    profiles: ["prod"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+      - "8899:8899"
+    volumes:
+      - solar_data:/data
+    environment:
+      SOLAR_DB_PATH: /data/samples.sqlite3
+      SQLITE_BACKUP_DIR: /data/backups
+      HOST: "0.0.0.0"
+      PORT: "3000"
+      INVERTER_TCP_ENABLE: "${INVERTER_TCP_ENABLE:-1}"
+
+  solar-backend-dev:
+    profiles: ["dev"]
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+      - "8899:8899"
+    volumes:
+      - solar_data:/data
+      - ./src:/app/src
+      - ./tsconfig.json:/app/tsconfig.json:ro
+    environment:
+      SOLAR_DB_PATH: /data/samples.sqlite3
+      SQLITE_BACKUP_DIR: /data/backups
+      HOST: "0.0.0.0"
+      PORT: "3000"
+      INVERTER_TCP_ENABLE: "${INVERTER_TCP_ENABLE:-1}"
+
+volumes:
+  solar_data:

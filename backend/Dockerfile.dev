@@ -1,0 +1,16 @@
+# Development: tsx watch + bind-mount ./src from compose
+FROM node:22-bookworm-slim
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY tsconfig.json vitest.config.ts ./
+COPY src ./src
+
+RUN mkdir -p /data/backups
+
+EXPOSE 3000 8899
+
+CMD ["npx", "tsx", "watch", "src/index.ts"]

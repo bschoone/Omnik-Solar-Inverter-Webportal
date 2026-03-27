@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+*.log
+
+# SQLite (created at runtime) and automated backups
+data/*.sqlite3
+data/*.sqlite3-shm
+data/*.sqlite3-wal
+data/backups/
+

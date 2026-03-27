@@ -1,0 +1,13 @@
+.DS_Store
+.idea/
+*.swp
+*.swo
+
+# Local env files (use *.example templates)
+.env
+.env.local
+.env.*.local
+
+# Python scratch
+__pycache__/
+*.py[cod]
